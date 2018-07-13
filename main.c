@@ -1,6 +1,12 @@
 #include <stdio.h>
 
+void solution1();
+
 int main() {
-    printf("Hello, World!\n");
+    solution1();
     return 0;
+}
+
+void solution1(){
+
 }
