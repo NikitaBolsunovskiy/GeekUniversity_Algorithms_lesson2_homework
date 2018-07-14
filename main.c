@@ -2,7 +2,7 @@
 #include <string.h>
 
 void solution1();
-char* decimalToBinary(int nDet, char * nBin);
+void decimalToBinary(int nDet, char * nBin, int point);
 
 int main() {
     solution1();
@@ -19,22 +19,36 @@ void solution1(){
     printf("Введите число: \n");
     scanf("%d",&nDec);
 
-    char nBin[100] = "";
+    char nBin[100];
 
-    decimalToBinary(nDec, "");
+    for (int i = 0; i< 100; i++) nBin[i]='_';
 
-    printf("%s\n",nBin);
+    decimalToBinary(nDec,nBin,0);
 
-    //printf("Двоичное представление числа: %d",nBin);
+    for (int i = 0;i<100;i++) {
+        if (nBin[i]!='_') {
+            printf("%c", nBin[i]);
+        } else {
+            continue;
+        }
+    }
 }
 
-char* decimalToBinary(int nDet, char * nBin) {
+void decimalToBinary(int nDet, char * nBin,int point) {
 
-    if (nDet == 0) {
-        return "0";
-    } else if (nDet == 1) {
-        return "1";
-    } else  {
-        return strcat(decimalToBinary(nDet/2,nBin),nBin);
-}
+    if (nDet > 0)
+    {
+        if (nDet % 2 == 0)
+        {
+            nDet = nDet / 2;
+            decimalToBinary(nDet, nBin,point + 1);
+            nBin[99 - point] = '0';
+        }
+        else {
+            nDet = nDet / 2;
+            decimalToBinary(nDet, nBin,point + 1);
+            nBin[99 - point] = '1';
+        }
+    }
+
 }
